@@ -1,24 +1,25 @@
 # Why there is no front end
 
-Kinaxis Maestro is a database with a subscription. The tables underneath it are ordinary: a few entities, a few relationships, a handful of workflows you repeat every week. What you pay for is the layer on top that lets people who do not write SQL get at those tables. Screens, filters, dashboards, forms.
+Most of the monthly S&OP process is not planning maths. It is a calendar of five meetings, a spreadsheet of forecast versions, a capacity check, a gap to budget, and a list of decisions somebody owns. Kinaxis Maestro does far more than that: it plans every part, every bill of materials and every site concurrently. Many mid-sized manufacturers and distributors pay for that engine and use it for the monthly family-level conversation.
 
-That layer used to be the whole product, because talking to a database was hard. It is not hard any more. Open this folder in Claude Code, describe what you want, and it writes the query, runs it, and explains the answer. Ask a question the dashboard never had a chart for and you still get an answer.
+That conversation is a database question. Open this folder in Claude Code, ask "which lines are over capacity in the next six months and what happens if we build the relish range a month early", and it runs the query and the scenario and explains the answer.
 
 ## What you gain
 
-- **Better answers.** A dashboard shows what the vendor decided to chart. Here you ask your own question, in your own words, and get it answered against your own data.
-- **No seats.** Everyone who needs to look can look. The bill does not grow with headcount.
-- **Your data in your Postgres.** Plain tables. Back them up, query them from anything, leave any time. There is no export step because there is nothing to leave.
-- **A process that matches you.** When your way of working changes, you add a command. You do not wait for a feature request to clear.
+- **The questions you actually ask in the meeting.** Gap to budget, families below target cover, lines over capacity, which forecasts carry a bias, which decisions are overdue. Asked in plain words, answered from your own records.
+- **No seats.** Sales, operations, finance and the managing director can all ask. The bill does not grow with the number of people in the meeting.
+- **Your data in your Postgres.** Plain tables. Back them up, query them from anything, leave any time.
+- **A process that matches you.** Your stages, your cover targets, your families. When the way you run the cycle changes, you add a command.
 
 ## What you give up
 
-- **A visual board.** Stages are a table you ask about, not cards you drag.
-- **A phone app.** It runs where Claude Code runs.
+- **Part-level planning.** This plans in product families and lines, the level the monthly meeting works at. It does not explode bills of materials, plan every SKU, or schedule the factory floor. If you need concurrent planning across thousands of parts and many sites, that is what Kinaxis is built for.
+- **Drag-and-drop screens.** Changes are made by asking, not by editing a grid on screen.
+- **A phone app.** It runs where Claude Code runs. The branded HTML pack and dashboards can be opened anywhere.
 - **A vendor help desk.** This is open source. Enterprise DNA supports the installed version for businesses that want someone to call.
 
 ## Who this fits
 
-Small teams who already use Claude Code, or who would rather learn to ask than learn another interface. If your team needs a screen to look at all day, keep Kinaxis Maestro. If you need the answers more than the screens, this is cheaper, faster and yours.
+Manufacturers and distributors with tens to a few hundred product families, one to a handful of sites, and a monthly S&OP meeting that currently runs on spreadsheets or on a planning suite that costs more than the meeting is worth.
 
 Installed and run for you: https://enterprisedna.co/omni/instead-of/kinaxis

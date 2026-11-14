@@ -22,11 +22,56 @@ Fill this in once. A worker with context knows. A worker without it guesses.
 
 | When the operator asks for... | Use this |
 |---|---|
-| <!-- TODO(author): one row per slash command --> | `/...` |
+| "What needs me this week?", the Monday review | `/weekly-review` |
+| "What is overdue or stuck?" | `/attention` |
+| The demand review meeting, forecast versions side by side | `/demand-review` |
+| The supply review meeting, what does not balance | `/supply-review` |
+| Options and recommendations for the executive meeting | `/pre-sop` |
+| The executive S&OP meeting pack | `/exec-pack` |
+| Projected stock and cover | `/balance` |
+| Line load against hours | `/capacity` |
+| Plan against budget | `/gap` |
+| How good is our forecast, bias | `/accuracy` |
+| "What if..." on demand, supply or line hours | `/scenario` |
+| Where is the cycle up to | `/cycles` |
+| Start next month's cycle | `/open-cycle` |
+| Move the cycle to its next stage | `/advance` |
+| Sign off the consensus, or the executive meeting | `/sign-off` |
+| Change a forecast number | `/forecast` |
+| Fill missing consensus from sales or statistical | `/consensus` |
+| Change the supply plan | `/supply` |
+| Shutdowns, extra shifts, line hours | `/set-capacity` |
+| Opening stock | `/stock` |
+| What shipped last month | `/actual` |
+| Budget numbers | `/budget` |
+| Record an assumption | `/assume` |
+| Record a decision | `/decide` |
+| Close a decision or assumption | `/resolve` |
+| Open decisions | `/decisions` |
+| Open assumptions | `/assumptions` |
+| Which families do we plan | `/list` |
+| Everything about one family | `/show` |
+| A new family or line | `/add` |
+| Change a family's price, line, targets | `/update` |
+| A note on a family | `/log` |
+| Who changed what | `/activity` |
+| Record controls | `/compliance` |
+| Bring data across from Kinaxis | `/import` |
+| Take every record out | `/export` |
+| Save the demand review pack as a draft | `/draft-demand-review` |
+| Save the exec pack as a draft | `/draft-exec-pack` |
+| Branded documents | `/docs` |
+| Read-only dashboards | `/view` |
+| Change a field, stage or rule | `/customise` |
+| A new dashboard page | `/new-view` |
+| Every CLI command | `/help` |
 
-If an ask fits nothing here, run the CLI directly (`npm run <cli> -- --help`) and then propose a new command for it.
+If an ask fits nothing here, run the CLI directly (`npm run sop -- help`) and then propose a new command for it.
 
 ## Hard rules
+
+- The executive meeting decides. Present options and their effect; record a decision only when the operator says it was made.
+- Never add currencies together. Never present a scenario as the plan: say it was not saved.
 
 - Never send email or messages from here. Draft to `drafts/`, a person sends.
 - Never delete records without an explicit yes in this session. Prefer marking closed or archived.

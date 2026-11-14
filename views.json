@@ -1,14 +1,30 @@
 [
   {
     "name": "week",
-    "title": "This week",
-    "subtitle": "S&OP for Claude Code: what needs attention, rendered by npm run view",
+    "title": "This week in S&OP",
+    "subtitle": "What needs a person, where the lines are loaded, and the plan against budget",
     "sections": [
-      {
-        "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
-      }
+      { "title": "Needs attention", "sql": "select issue, ref, month, detail from v_attention order by issue, ref" },
+      { "title": "Capacity under pressure", "sql": "select resource, to_char(month,'YYYY-MM') as month, load_hours, available_hours, utilisation_pct as utilisation, note from v_capacity where utilisation_pct >= 85 or available_hours is null order by resource, month" },
+      { "title": "Plan against budget", "sql": "select to_char(month,'YYYY-MM') as month, currency, plan_revenue, budget_revenue, gap from v_gap order by currency, month" }
+    ]
+  },
+  {
+    "name": "balance",
+    "title": "Demand and supply balance",
+    "subtitle": "Projected closing stock and months of cover, by family",
+    "sections": [
+      { "title": "Every family, every month", "sql": "select family, to_char(month,'YYYY-MM') as month, consensus, supply, closing_stock, cover_months, target_cover, status from v_balance order by family, month" },
+      { "title": "Line load", "sql": "select resource, to_char(month,'YYYY-MM') as month, load_hours, available_hours, utilisation_pct as utilisation from v_capacity order by resource, month" }
+    ]
+  },
+  {
+    "name": "accuracy",
+    "title": "Forecast accuracy",
+    "subtitle": "Consensus made one month ahead against what shipped, last three months",
+    "sections": [
+      { "title": "By family", "sql": "select family, months, forecast_units, actual_units, wmape_pct as error_pct, bias_pct from v_accuracy order by abs(bias_pct) desc nulls last" },
+      { "title": "Month by month", "sql": "select family, to_char(month,'YYYY-MM') as month, forecast_lag1 as forecast, actual from v_accuracy_detail order by family, month" }
     ]
   }
 ]

@@ -1,11 +1,27 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
+    "name": "exec-pack",
+    "title": "Executive S&OP pack",
+    "for_each": "select id, 'S&OP ' || to_char(month,'Month YYYY') as name from cycles where stage <> 'closed'",
     "file": "name",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      { "title": "The cycle", "layout": "record", "sql": "select to_char(month,'YYYY-MM') as cycle, stage, exec_meeting as meeting, consensus_signed_by as consensus_signed_off_by from cycles where id = $1" },
+      { "title": "Plan against budget", "sql": "select to_char(g.month,'YYYY-MM') as month, g.currency, g.plan_revenue, g.budget_revenue, g.gap from v_gap g, cycles c where c.id = $1 order by g.currency, g.month" },
+      { "title": "Where demand and supply do not balance", "sql": "select family, to_char(min(month),'YYYY-MM') as from_month, status, count(*) as months from v_balance b where b.cycle_id = $1 and status <> 'ok' group by family, status order by family" },
+      { "title": "Capacity under pressure", "sql": "select resource, to_char(month,'YYYY-MM') as month, load_hours, available_hours, utilisation_pct as utilisation, note from v_capacity where utilisation_pct >= 90 and $1::uuid is not null order by resource, month" },
+      { "title": "Assumptions behind the plan", "sql": "select text as assumption, owner, review_by, status from assumptions where cycle_id = $1 order by review_by" },
+      { "title": "Decisions still open", "sql": "select text as decision, owner, due from decisions where status = 'open' and $1::uuid is not null order by due" }
+    ]
+  },
+  {
+    "name": "family-plan",
+    "title": "Family plan sheet",
+    "for_each": "select id, code || ' ' || name as name from families where active",
+    "file": "name",
+    "sections": [
+      { "title": "Family", "layout": "record", "sql": "select f.code, f.name, f.unit, f.owner, f.currency, f.price, r.name as line, f.target_cover from families f left join resources r on r.id = f.resource_id where f.id = $1" },
+      { "title": "Forecast, supply and stock", "sql": "select to_char(b.month,'YYYY-MM') as month, p.statistical, p.sales, b.consensus, b.supply, b.closing_stock, b.cover_months, b.status from v_balance b join v_plan p on p.family_id = b.family_id and p.month = b.month where b.family_id = $1 order by b.month" },
+      { "title": "How the forecast has done", "sql": "select to_char(month,'YYYY-MM') as month, forecast_lag1 as forecast, actual from v_accuracy_detail where family_id = $1 order by month" }
     ]
   }
 ]

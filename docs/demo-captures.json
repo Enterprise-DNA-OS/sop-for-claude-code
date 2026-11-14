@@ -1,0 +1,24 @@
+{
+  "captured": "2026-11-14T11:22:04.080Z",
+  "data": "Fictional seeded demo",
+  "screens": [
+    {
+      "title": "Plan against budget",
+      "ask": "How far is our plan from the budget, month by month?",
+      "command": "npm run sop -- gap",
+      "output": "  month    currency  plan_units  budget_units  plan_revenue  budget_revenue  gap     families_without_consensus\n  -------  --------  ----------  ------------  ------------  --------------  ------  --------------------------\n  2026-11  NZD       15500       16500         811000        853000          -42000  1\n  2026-12  NZD       16700       17500         882000        913000          -31000  1\n  2027-01  NZD       19200       19000         1023500       1003000         20500   1\n  2027-02  NZD       18900       18000         998500        943000          55500   1\n  2027-03  NZD       16600       16000         862000        823000          39000   2\n  2027-04  NZD       15700       16000         816000        823000          -7000   2"
+    },
+    {
+      "title": "Lines under pressure",
+      "ask": "Which lines are over capacity, and why?",
+      "command": "npm run sop -- capacity",
+      "output": "  resource  site          month    load_hours  available_hours  utilisation_pct  note\n  --------  ------------  -------  ----------  ---------------  ---------------  ---------------------------------------\n  LINE-1    Auckland      2026-11  260.0       400              65\n  LINE-1    Auckland      2026-12  260.0       400              65\n  LINE-1    Auckland      2027-01  270.0       400              68\n  LINE-1    Auckland      2027-02  280.0       400              70\n  LINE-1    Auckland      2027-03  280.0       400              70\n  LINE-1    Auckland      2027-04  270.0       400              68\n  LINE-2    Christchurch  2026-11  145.0       300              48\n  LINE-2    Christchurch  2026-12  185.0       300              62\n  LINE-2    Christchurch  2027-01  205.0       150              137              Planned maintenance shutdown, two weeks\n  LINE-2    Christchurch  2027-02  165.0       300              55\n  LINE-2    Christchurch  2027-03  105.0       300              35\n  LINE-2    Christchurch  2027-04  105.0       300              35"
+    },
+    {
+      "title": "A promotion, tested",
+      "ask": "If the promotion lifts 500 ml sauce 15% and we build to match, does line 1 cope?",
+      "command": "npm run sop -- scenario --demand-percent=15 --family=SAU-500 --supply-follows",
+      "output": "inputs\ndemand_percent: 15\nsupply_percent: 15\nsupply_follows_demand: true\ncapacity_percent: 0\nfamily: SAU-500\nresource: all\n\nbalance\n(nothing)\n\ncapacity\n  resource  month    load_before  load_after  hours_after  utilisation_after_pct\n  --------  -------  -----------  ----------  -----------  ---------------------\n  LINE-1    2026-11  260          284         400          71\n  LINE-1    2026-12  260          284         400          71\n  LINE-1    2027-01  270          295.5       400          74\n  LINE-1    2027-02  280          307         400          77\n  LINE-1    2027-03  280          307         400          77\n  LINE-1    2027-04  270          295.5       400          74\n  LINE-2    2027-01  205          205         150          137"
+    }
+  ]
+}

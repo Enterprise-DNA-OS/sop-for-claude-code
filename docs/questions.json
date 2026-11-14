@@ -1,0 +1,42 @@
+[
+  {
+    "question": "How far is the consensus plan from the budget, month by month?",
+    "command": "npm run sop -- gap"
+  },
+  {
+    "question": "Which families fall below their target cover, and from which month?",
+    "command": "npm run sop -- balance"
+  },
+  {
+    "question": "Which lines are over capacity, and is it a shutdown or real demand?",
+    "command": "npm run sop -- capacity"
+  },
+  {
+    "question": "Which families have we over- or under-forecast for three months running?",
+    "command": "npm run sop -- accuracy"
+  },
+  {
+    "question": "Where do sales and the statistical forecast disagree by more than 10%?",
+    "command": "npm run sop -- demand-review"
+  },
+  {
+    "question": "If the promotion lifts 500 ml sauce 15% and we build to match, does line 1 cope?",
+    "command": "npm run sop -- scenario --demand-percent=15 --family=SAU-500 --supply-follows"
+  },
+  {
+    "question": "What if line 2 gets 50% more hours in the shutdown month?",
+    "command": "npm run sop -- scenario --capacity-percent=50 --resource=LINE-2"
+  },
+  {
+    "question": "Which decisions from last month's executive meeting are still open past their date?",
+    "command": "npm run sop -- decisions"
+  },
+  {
+    "question": "Which assumptions behind this plan have not been checked since they were made?",
+    "command": "npm run sop -- assumptions"
+  },
+  {
+    "question": "Who changed the consensus, from what, to what, and on what evidence?",
+    "command": "npm run sop -- activity"
+  }
+]
